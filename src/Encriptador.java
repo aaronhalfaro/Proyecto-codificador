@@ -9,7 +9,6 @@ public class Encriptador {
         int extensionIndex = archivoParaEncriptar.lastIndexOf(".txt");
         String archivoEncriptado = archivoParaEncriptar.substring(0, extensionIndex) + "_encriptado.txt";
 
-
         try (FileReader reader = new FileReader(archivoParaEncriptar);
              FileWriter writer = new FileWriter(archivoEncriptado)) {
 
