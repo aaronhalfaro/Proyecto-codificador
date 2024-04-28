@@ -1,4 +1,3 @@
-import java.io.IOException;
 import java.util.Scanner;
 public class Main {
 
@@ -18,8 +17,9 @@ public class Main {
 
                 //ENCRIPTAR ARCHIVO
                 System.out.println("se está encriptando el archivo " + archivoParaEncriptar + "...");
-                CodificadorDeCaracteres codificador = new CodificadorDeCaracteres();
-                String textoEncriptado = codificador.encriptar(textoDeArchivo, clave);
+                //CodificadorDeCaracteres codificador = new CodificadorDeCaracteres();
+                Encriptador encriptador = new Encriptador();
+                String textoEncriptado = encriptador.encriptar(textoDeArchivo, clave);
 
                 //ESCRIBIR ARCHIVO CON EL TEXTO ENCRIPTADO
                 LectorDeArchivo.escribirArchivoDeTexto(textoEncriptado);
@@ -36,27 +36,27 @@ public class Main {
                 String archivoParaDesencriptar = new Scanner(System.in).nextLine();
                 String textoDeArchivo = LectorDeArchivo.leerArchivoTexto(archivoParaDesencriptar);
 
-                System.out.println("se está desencriptando el archivo " + "en el archivo_desencriptado.txt" + "...");
-//                Thread.sleep(1000);
+                System.out.println("\n\nse está desencriptando el texto " + "en \"archivocopy.txt\"" + "...\n");
+
 
                 //DESENCRIPTADO POR FUERZA BRUTA
-                int contadorClave = 1;
-                CodificadorDeCaracteres codificador = new CodificadorDeCaracteres();
-                String textoDesencriptado = codificador.encriptar(textoDeArchivo, (contadorClave * -1));
+                DesencriptadorPorFuerzaBruta desencriptador = new DesencriptadorPorFuerzaBruta();
+                String textoDesencriptado = desencriptador.desencriptarPorFuerzaBruta(textoDeArchivo);
 
-                //COMPROBAR ARCHIVO EN ESPAÑOL
-                while (!codificador.comprobarTexto(textoDesencriptado)){
-                    textoDesencriptado = codificador.encriptar(textoDesencriptado, (contadorClave++ * -1));
-                }
-                System.out.println("El texto desencriptado tenia una clave de cifrado de"+ contadorClave +" es el siguiente:");
-                System.out.println(textoDesencriptado);
-                System.out.println(contadorClave-1);
+                //FALLA?
+                if(textoDesencriptado.equals("no se pudo")){
+                    System.out.println("\nNO FUE POSIBLE DECODIFICAR EL MENSAJE\n");
+                    return;}
+
+                //IMPRIMIR TEXTO EN PANTALLA
+                System.out.println("El texto encriptado es: \n");
+                 System.out.println(textoDesencriptado);
 
                 //ESCRIBIR ARCHIVO DESENCRIPTADO
                 LectorDeArchivo.escribirArchivoDeTexto(textoDesencriptado);
 
-                System.out.println("Archivo desencriptado con éxito");
-//                Thread.sleep(500);
+                System.out.println("\n\nArchivo desencriptado con éxito en \"archivo.copy.txt\"\n");
+
             }
             case "0", "salir" -> {
                 System.out.println("Hasta pronto!");
@@ -70,6 +70,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner console = new Scanner(System.in);
         String seleccion;
+
         System.out.println("Programa que encripta un archivo .txt");
         do {
             System.out.println("""
@@ -81,7 +82,6 @@ public class Main {
             seleccion = console.nextLine().toLowerCase();
 
             ejecutaSeleccion(seleccion);
-
 
         }while(!(seleccion.equals("0") || seleccion.equals("salir")));
     }
