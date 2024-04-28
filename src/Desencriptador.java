@@ -1,4 +1,5 @@
 public class Desencriptador {
+    //solo desencripta
     private CodificadorDeCaracteres codificador = new CodificadorDeCaracteres();
 
     public  String desencriptar(String textoParaDesencriptar, int clave) {

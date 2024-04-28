@@ -3,6 +3,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class LectorDeArchivo {
+    //
     public static String leerArchivoTexto(String nombreArchivo){
         try {
             return Files.readString(Path.of(nombreArchivo));

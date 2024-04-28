@@ -2,6 +2,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class DesencriptadorPorFuerzaBruta {
+    //
     private Desencriptador desencriptador = new Desencriptador();
 
     public boolean comprobarTexto(String textoAComprobar) {

@@ -70,7 +70,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner console = new Scanner(System.in);
         String seleccion;
-
+        //creo que si debi haber metido esto en otra clase jeje
         System.out.println("Programa que encripta un archivo .txt");
         do {
             System.out.println("""

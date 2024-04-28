@@ -1,7 +1,6 @@
-import java.util.Arrays;
-import java.util.List;
 
 public class CodificadorDeCaracteres {
+
     char recorrerLetra(char letraOriginal, int clave){
         int codigoLetraMovida = letraOriginal + clave;
         char letraMovida = (char) codigoLetraMovida;
